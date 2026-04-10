@@ -90,8 +90,8 @@ tls:
   sni: bing.com
   insecure: true
 bandwidth:
-  up: 0 mbps
-  down: 0 mbps
+  up: 1 gbps
+  down: 1 gbps
 quic:
   initStreamReceiveWindow: 8388608
   maxStreamReceiveWindow: 8388608
@@ -264,8 +264,8 @@ tls:
   sni: bing.com
   insecure: true
 bandwidth:
-  up: 100 mbps
-  down: 100 mbps
+  up: 1 gbps
+  down: 1 gbps
 quic:
   initStreamReceiveWindow: 8388608
   maxStreamReceiveWindow: 8388608
