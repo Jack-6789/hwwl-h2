@@ -296,7 +296,7 @@ quic:
 fastOpen: true
 
 socks5:
-  listen: 127.0.0.1:5678
+  listen: last_ip:5678
 
 transport:
   udp:
@@ -317,7 +317,7 @@ EOF
     "maxConnReceiveWindow": 33554432
   },
   "socks5": {
-    "listen": "127.0.0.1:5678"
+    "listen": "last_ip:5678"
   },
   "transport": {
     "udp": {
@@ -327,7 +327,7 @@ EOF
 }
 EOF
 
-    url="hysteria2://$auth_pwd@$ip:$last_port/?insecure=1&sni=$hy_domain#Hysteria2"
+    url="hysteria2://$auth_pwd@$last_ip:$last_port/?insecure=1&sni=$hy_domain#Hysteria2"
     echo $url > /root/hy/url.txt
 
     systemctl daemon-reload
