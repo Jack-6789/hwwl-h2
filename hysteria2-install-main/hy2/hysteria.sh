@@ -59,7 +59,7 @@ inst_cert(){
     echo -e " ${GREEN}2.${PLAIN} Acme 脚本自动申请"
     echo -e " ${GREEN}3.${PLAIN} 自定义证书路径"
     echo ""
-    read -rp "请输入选项 [1-3，默认1回车]: " certInput
+    read -rp "请输入选项 [1-3，默认1 回车]: " certInput
     if [[ $certInput == 2 ]]; then
         cert_path="/root/cert.crt"
         key_path="/root/private.key"
