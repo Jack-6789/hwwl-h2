@@ -175,7 +175,7 @@ openssl req -new -x509 -days 36500 -key ca.key -out ca.crt -subj "/CN=bing.com"
 # Step 4: Prompt user for input
 echo ""
 read -p "Enter a port (or press enter for a random port): " port
-[ -z "$port" ] && port=$((RANDOM + 10000))
+[ -z "$port" ] && port=8443
 
 echo ""
 read -p "Enter a password (or press enter for a random password): " password
