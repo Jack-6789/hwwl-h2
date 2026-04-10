@@ -156,7 +156,7 @@ inst_port(){
     until [[ -z $(ss -tunlp | grep -w udp | awk '{print $5}' | sed 's/.*://g' | grep -w "$port") ]]; do
         if [[ -n $(ss -tunlp | grep -w udp | awk '{print $5}' | sed 's/.*://g' | grep -w "$port") ]]; then
             echo -e "${RED} $port ${PLAIN} 端口已经被其他程序占用，请更换端口重试！"
-            read -p "设置 Hysteria 2 端口 [1-65535]（回车则随机分配端口）：" port
+            read -p "设置 Hysteria 2 端口 [1-65535]（随机分配端口，回车）：" port
             [[ -z $port ]] && port=$(shuf -i 2000-65535 -n 1)
         fi
     done
@@ -171,7 +171,7 @@ inst_jump(){
     echo -e " ${GREEN}1.${PLAIN} 单端口 ${YELLOW}（默认）${PLAIN}"
     echo -e " ${GREEN}2.${PLAIN} 端口跳跃"
     echo ""
-    read -rp "请输入选项 [1-2，默认1回车]: " jumpInput
+    read -rp "请输入选项 [1-2，默认1 回车]: " jumpInput
     if [[ $jumpInput == 2 ]]; then
         read -p "设置范围端口的起始端口 (建议10000-65535之间)：" firstport
         read -p "设置一个范围端口的末尾端口 (建议10000-65535之间，一定要比上面起始端口大)：" endport
