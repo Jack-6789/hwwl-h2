@@ -199,7 +199,7 @@ inst_pwd(){
 }
 
 inst_site(){
-    read -rp "请输入 Hysteria 2 的伪装网站地址 （去除https://） [默认首尔大学]：" proxysite
+    read -rp "请输入 Hysteria 2 的伪装网站地址 （去除https://） [默认]：" proxysite
     [[ -z $proxysite ]] && proxysite="en.snu.ac.kr"
     yellow "使用在 Hysteria 2 节点的伪装网站为：$proxysite"
 }
@@ -327,7 +327,7 @@ EOF
 }
 EOF
 
-    url="hysteria2://$auth_pwd@$last_ip:$last_port/?insecure=1&sni=$hy_domain#Hysteria2-misaka"
+    url="hysteria2://$auth_pwd@$server_ip:$last_port/?insecure=1&sni=$hy_domain#Hysteria2"
     echo $url > /root/hy/url.txt
 
     systemctl daemon-reload
