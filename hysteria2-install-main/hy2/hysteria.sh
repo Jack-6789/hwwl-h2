@@ -59,7 +59,7 @@ inst_cert(){
     echo -e " ${GREEN}2.${PLAIN} Acme 脚本自动申请"
     echo -e " ${GREEN}3.${PLAIN} 自定义证书路径"
     echo ""
-    read -rp "请输入选项 [1-3，默认1]: " certInput
+    read -rp "请输入选项 [1-3，默认1回车]: " certInput
     if [[ $certInput == 2 ]]; then
         cert_path="/root/cert.crt"
         key_path="/root/private.key"
@@ -171,7 +171,7 @@ inst_jump(){
     echo -e " ${GREEN}1.${PLAIN} 单端口 ${YELLOW}（默认）${PLAIN}"
     echo -e " ${GREEN}2.${PLAIN} 端口跳跃"
     echo ""
-    read -rp "请输入选项 [1-2，默认1]: " jumpInput
+    read -rp "请输入选项 [1-2，默认1回车]: " jumpInput
     if [[ $jumpInput == 2 ]]; then
         read -p "设置范围端口的起始端口 (建议10000-65535之间)：" firstport
         read -p "设置一个范围端口的末尾端口 (建议10000-65535之间，一定要比上面起始端口大)：" endport
