@@ -59,7 +59,7 @@ inst_cert(){
     echo -e " ${GREEN}2.${PLAIN} Acme 脚本自动申请"
     echo -e " ${GREEN}3.${PLAIN} 自定义证书路径"
     echo ""
-    read -rp "请输入选项 [1-3]: " certInput
+    read -rp "请输入选项 [1-3，默认1]: " certInput
     if [[ $certInput == 2 ]]; then
         cert_path="/root/cert.crt"
         key_path="/root/private.key"
@@ -151,7 +151,7 @@ inst_cert(){
 inst_port(){
     iptables -t nat -F PREROUTING >/dev/null 2>&1
 
-    read -p "设置 Hysteria 2 端口 [1-65535]（回车则随机分配端口）：" port
+    read -p "设置 Hysteria 2 端口 [1-65535]（随机分配端口，回车）：" port
     [[ -z $port ]] && port=$(shuf -i 2000-65535 -n 1)
     until [[ -z $(ss -tunlp | grep -w udp | awk '{print $5}' | sed 's/.*://g' | grep -w "$port") ]]; do
         if [[ -n $(ss -tunlp | grep -w udp | awk '{print $5}' | sed 's/.*://g' | grep -w "$port") ]]; then
@@ -171,7 +171,7 @@ inst_jump(){
     echo -e " ${GREEN}1.${PLAIN} 单端口 ${YELLOW}（默认）${PLAIN}"
     echo -e " ${GREEN}2.${PLAIN} 端口跳跃"
     echo ""
-    read -rp "请输入选项 [1-2]: " jumpInput
+    read -rp "请输入选项 [1-2，默认1]: " jumpInput
     if [[ $jumpInput == 2 ]]; then
         read -p "设置范围端口的起始端口 (建议10000-65535之间)：" firstport
         read -p "设置一个范围端口的末尾端口 (建议10000-65535之间，一定要比上面起始端口大)：" endport
@@ -193,13 +193,13 @@ inst_jump(){
 }
 
 inst_pwd(){
-    read -p "设置 Hysteria 2 密码（回车跳过为随机字符）：" auth_pwd
+    read -p "设置 Hysteria 2 密码（随机，回车）：" auth_pwd
     [[ -z $auth_pwd ]] && auth_pwd=$(date +%s%N | md5sum | cut -c 1-8)
     yellow "使用在 Hysteria 2 节点的密码为：$auth_pwd"
 }
 
 inst_site(){
-    read -rp "请输入 Hysteria 2 的伪装网站地址 （去除https://） [默认]：" proxysite
+    read -rp "请输入 Hysteria 2 的伪装网站地址(去除https://) [默认，回车]：" proxysite
     [[ -z $proxysite ]] && proxysite="en.snu.ac.kr"
     yellow "使用在 Hysteria 2 节点的伪装网站为：$proxysite"
 }
@@ -327,7 +327,7 @@ EOF
 }
 EOF
 
-    url="hysteria2://$auth_pwd@$$last_ip:$last_port/?insecure=1&sni=$hy_domain#Hysteria2-misaka"
+    url="hysteria2://$auth_pwd@$last_ip:$last_port/?insecure=1&sni=$hy_domain#$last_ip"
     echo $url > /root/hy/url.txt
 
     systemctl daemon-reload
