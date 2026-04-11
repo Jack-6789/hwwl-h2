@@ -476,7 +476,7 @@ changeconf(){
 }
 
 showconf(){
-    yellow "Hysteria 2 节点分享链接如下，并保存到 /root/hy/url.txt"
+    yellow "Hysteria2 参数链接如下，并保存到 /root/hy/url.txt"
     red "$(cat /root/hy/url.txt)"
 }
 
